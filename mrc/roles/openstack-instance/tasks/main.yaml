@@ -21,7 +21,7 @@
   loop: '{{ os_instance.results }}'
   when: item.openstack is defined
 
-- name: Set JAVA_HOME
+- name: Set environment
   become: yes
   lineinfile:
     dest: /etc/environment
