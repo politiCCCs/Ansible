@@ -21,16 +21,16 @@
   loop: '{{ os_instance.results }}'
   when: item.openstack is defined
 
-- name: Set environment
+- name: Set JAVA_HOME
   become: yes
   lineinfile:
     dest: /etc/environment
     state: present
     line: 'HTTP_PROXY=http://wwwproxy.unimelb.edu.au:8000/
-    HTTPS_PROXY=http://wwwproxy.unimelb.edu.au:8000/
-    http_proxy=http://wwwproxy.unimelb.edu.au:8000/
-    https_proxy=http://wwwproxy.unimelb.edu.au:8000/
-    no_proxy=localhost,127.0.0.1,localaddress,172.16.0.0/12,.melbourne.rc.nectar.org.au,.storage.unimelb.edu.au,.cloud.unimelb.edu.au'
+           HTTPS_PROXY=http://wwwproxy.unimelb.edu.au:8000/
+           http_proxy=http://wwwproxy.unimelb.edu.au:8000/
+           https_proxy=http://wwwproxy.unimelb.edu.au:8000/
+           no_proxy=localhost,127.0.0.1,localaddress,172.16.0.0/12,.melbourne.rc.nectar.org.au,.storage.unimelb.edu.au,.cloud.unimelb.edu.au'
 
 - name: Wait for connection
   wait_for:
