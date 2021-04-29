@@ -1,3 +1,4 @@
+---
 couchdb_image: ibmcom/couchdb3:latest
 couchdb_user: admin
 couchdb_pass: admin

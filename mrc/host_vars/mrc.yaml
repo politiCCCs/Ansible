@@ -1,8 +1,13 @@
-# Common vars
+---
 availability_zone: melbourne-qh2-uom
 
 # NeCTAR Ubuntu 20.04 LTS (Focal) amd64
 instance_image: f8b79936-6616-4a22-b55d-0d0a1d27bceb
-instance_key_name: dini
+instance_key_name: mrc
 instance_flavor: uom.mse.1c4g
 instance_groups: ['main', 'worker', 'worker', 'worker']
+
+# ansible_python_interpreter: /usr/bin/python3
+ansible_user: ubuntu"
+ansible_ssh_private_key_file: "{{ lookup('env','SSH_KEYDIR') }}/mrc.pem"
+# ansible_ssh_common_args: '-o StrictHostKeyChecking=no'

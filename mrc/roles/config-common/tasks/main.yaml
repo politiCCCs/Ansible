@@ -1,7 +1,4 @@
-- name: Gather facts of remote host
-  setup:
-    gather_subset: all
-
+---
 - name: Add proxy in /etc/environment
   register: proxy_setup
   become: yes
@@ -19,6 +16,11 @@
   become: yes
   reboot:
     reboot_timeout: 3000
+
+- name: Gather facts of remote host
+  setup:
+    gather_subset: all
+
 # Install dependencies by adding single-quoted name of package into the apt name list
 - name: Install dependencies
   tags: always
