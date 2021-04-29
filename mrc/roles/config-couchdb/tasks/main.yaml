@@ -1,0 +1,23 @@
+- name: Load CouchDB Image
+  become: yes
+  docker_image:
+    name: '{{ couchdb_image }}'
+    source: pull
+
+- name: Start CouchDB container
+  become: yes
+  docker_container:
+    name: '{{ couchdb_container_name }}'
+    image: '{{ couchdb_image }}'
+    state: started
+    volumes: /data/couchdb/data:/opt/couchdb/data
+    restart_policy: on-failure
+    ports:
+      - '{{ couchdb_port }}:{{ couchdb_port }}'
+      - '4873:4873'
+      - '6095:6095'
+    env:
+      COUCHDB_USER: '{{ couchdb_user }}'
+      COUCHDB_PASSWORD: '{{ couchdb_pass }}'
+      COUCHDB_SECRET: '{{ couchdb_cookie }}'
+      ERL_FLAGS: '-setcookie "{{ couchdb_cookie }}" -name "couchdb@{{ ansible_default_ipv4.address }}"'

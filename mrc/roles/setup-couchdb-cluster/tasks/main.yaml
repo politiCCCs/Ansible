@@ -1,0 +1,32 @@
+- name: Check connection
+  args:
+    warn: yes
+  shell: 'curl "http://{{ couchdb_user }}:{{ couchdb_pass }}@{{ groups["main"][0] }}:{{ couchdb_port }}"'
+  register: connection
+
+# "main" is excluded since it will be the once running this command
+- name: Enable cluster setup
+  shell: 'curl -XPOST "http://{{ couchdb_user }}:{{ couchdb_pass }}@{{ groups["main"][0] }}:{{ couchdb_port }}/_cluster_setup" --header "Content-Type: application/json" --data "{\"action\": \"enable_cluster\", \"bind_address\":\"0.0.0.0\",\"username\": \"{{ couchdb_user }}\", \"password\":\"{{ couchdb_pass }}\", \"port\": \"{{ couchdb_port }}\", \"remote_node\": \"{{ item }}\", \"node_count\": \"{{ couchdb_number_of_nodes }}\", \"remote_current_user\":\"{{ couchdb_user }}\", \"remote_current_password\":\"{{ couchdb_pass }}\"}"'
+  args:
+    warn: yes
+  loop: '{{ groups["all"] }}'
+  when: item != groups["main"][0]
+
+- name: Add nodes to cluster
+  shell: 'curl -XPOST "http://{{ couchdb_user }}:{{ couchdb_pass }}@{{ groups["main"][0] }}:{{ couchdb_port }}/_cluster_setup" --header "Content-Type: application/json"  --data "{\"action\": \"add_node\", \"host\":\"{{ item }}\", \"port\": \"{{ couchdb_port }}\", \"username\": \"{{ couchdb_user }}\", \"password\":\"{{ couchdb_pass }}\"}"'
+  args:
+    warn: yes
+  loop: '{{ groups["all"] }}'
+  when: item != groups["main"][0]
+
+- name: Finish cluster setup
+  args:
+    warn: yes
+  shell: 'curl -XPOST "http://{{ couchdb_user }}:{{ couchdb_pass }}@{{ groups["main"][0] }}:{{ couchdb_port }}/_cluster_setup" --header "Content-Type: application/json" --data "{\"action\": \"finish_cluster\"}"'
+
+# By default has 8 shards (i.e. number of range partitions) and 3 replicas (i.e. number of copies of
+# the database in the cluster), taken from docs: https://docs.couchdb.org/en/stable/api/database/common.html
+- name: Create Tweets database
+  args:
+    warn: yes
+  shell: 'curl -X PUT "http://{{ couchdb_user }}:{{ couchdb_pass }}@{{ groups["main"][0] }}:{{ couchdb_port }}/tweets_db"'
