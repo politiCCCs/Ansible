@@ -19,6 +19,7 @@
 
   roles:
     - role: config-common
+    - role: config-volumes
     - role: config-docker
     - role: config-couchdb
 

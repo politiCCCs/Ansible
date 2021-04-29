@@ -1,4 +1,10 @@
 ---
+volumes:
+  - device: /dev/vdb
+    mountpoint: /var/lib/docker
+  - device: /dev/vdc
+    mountpoint: /data
+
 couchdb_image: ibmcom/couchdb3:latest
 couchdb_user: admin
 couchdb_pass: admin
