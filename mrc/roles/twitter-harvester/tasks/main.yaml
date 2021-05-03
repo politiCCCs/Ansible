@@ -1,0 +1,28 @@
+- name: Install dependencies for harvaster
+  become: yes
+  pip:
+    name:
+      [
+        'tweepy',
+        'better-profanity',
+        'afinn',
+        'emoji',
+        'couchdb'
+      ]
+    state: latest
+
+- name: Copy files to the Server
+  become: yes
+  copy:
+    src: /mnt/c/Users/Aleks/Downloads/twitter_harvester-main/twitter_harvester-main/config.py
+    dest: config.py
+
+- name: Copy files to the Server
+  become: yes
+  copy:
+    src: /mnt/c/Users/Aleks/Downloads/twitter_harvester-main/twitter_harvester-main/casescenarios.py
+    dest: casescenarios.py
+
+- name: run the script
+  ansible.builtin.script:
+    cmd: python3 casescenarios.py

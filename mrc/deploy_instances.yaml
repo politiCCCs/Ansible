@@ -23,6 +23,7 @@
     - role: config-docker
     - role: config-couchdb
 
+
 - hosts: main
   vars_files:
     - host_vars/mrc.yaml
@@ -31,3 +32,11 @@
 
   roles:
     - role: setup-couchdb-cluster
+
+- hosts: main
+  vars_files:
+    - host_vars/mrc.yaml
+    - host_vars/config.yaml
+  gather_facts: true
+  roles:
+    - role: twitter-harvester

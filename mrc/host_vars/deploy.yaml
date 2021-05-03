@@ -4,19 +4,15 @@ volumes:
   - vol_name: twt-vol-1-1
     vol_size: 10
   - vol_name: twt-vol-1-2
-    vol_size: 25
+    vol_size: 60
   - vol_name: twt-vol-2-1
     vol_size: 10
   - vol_name: twt-vol-2-2
-    vol_size: 25
+    vol_size: 60
   - vol_name: twt-vol-3-1
     vol_size: 10
   - vol_name: twt-vol-3-2
-    vol_size: 25
-  - vol_name: twt-vol-4-1
-    vol_size: 10
-  - vol_name: twt-vol-4-2
-    vol_size: 25
+    vol_size: 60
 
 # Security group
 security_groups:
@@ -65,5 +61,3 @@ instances:
     volumes: ['twt-vol-2-1', 'twt-vol-2-2']
   - name: twt-3
     volumes: ['twt-vol-3-1', 'twt-vol-3-2']
-  - name: twt-4
-    volumes: ['twt-vol-4-1', 'twt-vol-4-2']
