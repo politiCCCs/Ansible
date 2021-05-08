@@ -16,7 +16,7 @@
     ports:
       - '{{ couchdb_port }}:{{ couchdb_port }}'
       - '4369:4369'
-      - '9100:9200'
+      - '9100:9100'
     env:
       COUCHDB_USER: '{{ couchdb_user }}'
       COUCHDB_PASSWORD: '{{ couchdb_pass }}'

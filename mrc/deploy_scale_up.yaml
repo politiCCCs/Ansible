@@ -1,0 +1,24 @@
+- hosts: localhost
+  vars_files:
+    - host_vars/mrc.yaml
+    - host_vars/deploy-scale.yaml
+  gather_facts: true
+
+  roles:
+    - role: openstack-common
+    - role: openstack-volume
+    - role: openstack-security-group
+    - role: openstack-instance
+    # - role: openstack-volume-snapshot
+
+- hosts: all
+  vars_files:
+    - host_vars/mrc.yaml
+    - host_vars/config-scale.yaml
+  gather_facts: true
+
+  roles:
+    - role: config-common
+    - role: config-volumes
+    - role: config-docker
+    - role: twitter-harvester-scale-up
