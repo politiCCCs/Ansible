@@ -1,1 +1,16 @@
----
+- name: Install dependencies for Twitter harvester
+  become: yes
+  pip:
+    name: ['tweepy', 'better-profanity', 'afinn', 'emoji', 'couchdb']
+    state: latest
+- name: Copy files to the Server
+  become: yes
+  copy:
+    src: /mnt/c/Users/Aleks/Downloads/twitter_harvester-main/twitter_harvester-main/config.py
+    dest: config.py
+
+- name: Copy files to the Server
+  become: yes
+  copy:
+    src: /mnt/c/Users/Aleks/Downloads/twitter_harvester-main/twitter_harvester-main/streamer_withpoliticalcategories.py
+    dest: streamer_withpoliticalcategories.py

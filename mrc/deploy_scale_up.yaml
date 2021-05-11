@@ -9,7 +9,6 @@
     - role: openstack-volume
     - role: openstack-security-group
     - role: openstack-instance
-    # - role: openstack-volume-snapshot
 
 - hosts: all
   vars_files:
@@ -20,5 +19,4 @@
   roles:
     - role: config-common
     - role: config-volumes
-    - role: config-docker
     - role: twitter-harvester-scale-up
