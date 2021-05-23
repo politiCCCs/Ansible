@@ -31,3 +31,13 @@
 
   roles:
     - role: setup-couchdb-cluster
+
+- hosts: all
+  vars_files:
+    - host_vars/mrc.yaml
+    - host_vars/config.yaml
+    - host_vars/harvester.yaml
+  gather_facts: true
+  roles:
+    - role: twitter-harvester
+

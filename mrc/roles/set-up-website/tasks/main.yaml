@@ -1,0 +1,50 @@
+- name: Install dependencies
+  tags: always
+  become: yes
+  apt:
+    name:
+      [ 'nodejs',
+        'npm'
+      ]
+    state: latest
+    install_recommends: no
+    update_cache: yes
+
+- name: Git Clone User facing Repo
+  become: yes
+  git:
+    repo: https://Tankofdoom:tnGd9cqwTMTYC2x@github.com/politiCCCs/user-facing.git
+    dest: /home/ubuntu/user-facing
+    recursive: no
+    track_submodules: yes
+    update: true
+    force: true
+    accept_hostkey: true
+
+- name: Git Clone Backend Repo
+  become: yes
+  git:
+    repo: https://Tankofdoom:tnGd9cqwTMTYC2x@github.com/politiCCCs/backend.git
+    dest: /home/ubuntu/user-facing/backend
+    recursive: no
+    track_submodules: yes
+    update: true
+    force: true
+    accept_hostkey: true
+
+- name: Git Clone Frontend Repo
+  become: yes
+  git:
+    repo: https://Tankofdoom:tnGd9cqwTMTYC2x@github.com/politiCCCs/frontend.git
+    dest: /home/ubuntu/user-facing/frontend
+    recursive: no
+    track_submodules: yes
+    update: true
+    force: true
+    accept_hostkey: true
+
+- name: Running NPM install
+  become: yes
+  shell:
+    cmd: ./build.sh
+    chdir: /home/ubuntu/user-facing/

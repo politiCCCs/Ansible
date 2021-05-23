@@ -3,18 +3,14 @@
   pip:
     name: ['tweepy', 'better-profanity', 'afinn', 'emoji', 'couchdb']
     state: latest
-# - name: Copy files to the Server
-#   become: yes
-#   copy:
-#     src: /mnt/c/Users/Aleks/Downloads/twitter_harvester-main/twitter_harvester-main/config.py
-#     dest: config.py
 
-# - name: Copy files to the Server
-#   become: yes
-#   copy:
-#     src: /mnt/c/Users/Aleks/Downloads/twitter_harvester-main/twitter_harvester-main/casescenarios.py
-#     dest: casescenarios.py
-
-# - name: run the script
-#   ansible.builtin.script:
-#     cmd: python3 casescenarios.py
+- name: Git Clone Repo
+  become: yes
+  git:
+    repo: https://Tankofdoom:tnGd9cqwTMTYC2x@github.com/politiCCCs/twitter_harvester.git
+    dest: /home/ubuntu/twitter
+    recursive: no
+    track_submodules: yesssh
+    update: true
+    force: true
+    accept_hostkey: true

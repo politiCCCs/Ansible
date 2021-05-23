@@ -1,0 +1,40 @@
+# Volume
+---
+volumes:
+  - vol_name: website-vol-4-1
+    vol_size: 10
+  - vol_name: website-vol-4-2
+    vol_size: 60
+
+# Security group
+security_groups:
+  - name: twt_ssh
+    description: 'Security group for SSH access'
+    protocol: tcp
+    port_range_min: 22
+    port_range_max: 22
+    remote_ip_prefix: 0.0.0.0/0
+  - name: twt_http
+    description: 'Security group for HTTP'
+    protocol: tcp
+    port_range_min: 80
+    port_range_max: 80
+    remote_ip_prefix: 0.0.0.0/0
+  - name: twt_http
+    description: 'Security group for HTTPS'
+    protocol: tcp
+    port_range_min: 443
+    port_range_max: 443
+    remote_ip_prefix: 0.0.0.0/0
+  - name: frontend_group
+    description: 'Security group for the Frontend'
+    protocol: tcp
+    port_range_min: 3001
+    port_range_max: 3001
+    remote_ip_prefix: 0.0.0.0/0
+# Instance
+instances:
+  - name: website
+    volumes: ['website-vol-4-1', 'website-vol-4-2']
+
+instance_groups: ['front-end']

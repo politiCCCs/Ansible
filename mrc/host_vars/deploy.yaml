@@ -4,19 +4,15 @@ volumes:
   - vol_name: twt-vol-1-1
     vol_size: 10
   - vol_name: twt-vol-1-2
-    vol_size: 25
+    vol_size: 60
   - vol_name: twt-vol-2-1
     vol_size: 10
   - vol_name: twt-vol-2-2
-    vol_size: 25
+    vol_size: 60
   - vol_name: twt-vol-3-1
     vol_size: 10
   - vol_name: twt-vol-3-2
-    vol_size: 25
-  - vol_name: twt-vol-4-1
-    vol_size: 10
-  - vol_name: twt-vol-4-2
-    vol_size: 25
+    vol_size: 60
 
 # Security group
 security_groups:
@@ -32,11 +28,17 @@ security_groups:
     port_range_min: 80
     port_range_max: 80
     remote_ip_prefix: 0.0.0.0/0
+  - name: twt_http
+    description: 'Security group for HTTPS'
+    protocol: tcp
+    port_range_min: 443
+    port_range_max: 443
+    remote_ip_prefix: 0.0.0.0/0
   - name: frontend_group
     description: 'Security group for the Frontend'
     protocol: tcp
-    port_range_min: 8080
-    port_range_max: 8080
+    port_range_min: 3001
+    port_range_max: 3001
     remote_ip_prefix: 0.0.0.0/0
   - name: couchdb_group
     description: 'Security group for CouchDB'
@@ -65,7 +67,5 @@ instances:
     volumes: ['twt-vol-2-1', 'twt-vol-2-2']
   - name: twt-3
     volumes: ['twt-vol-3-1', 'twt-vol-3-2']
-  - name: twt-4
-    volumes: ['twt-vol-4-1', 'twt-vol-4-2']
 
 instance_groups: ['main', 'worker', 'worker']

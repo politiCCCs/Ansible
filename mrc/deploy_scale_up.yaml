@@ -19,4 +19,4 @@
   roles:
     - role: config-common
     - role: config-volumes
-    - role: twitter-harvester-scale-up
+    - role: twitter-harvester

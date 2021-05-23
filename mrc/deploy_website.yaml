@@ -1,0 +1,22 @@
+- hosts: localhost
+  vars_files:
+    - host_vars/mrc.yaml
+    - host_vars/deploy-website.yaml
+  gather_facts: true
+
+  roles:
+    - role: openstack-common
+    - role: openstack-volume
+    - role: openstack-security-group
+    - role: openstack-instance
+
+- hosts: all
+  vars_files:
+    - host_vars/mrc.yaml
+    - host_vars/config-scale.yaml
+  gather_facts: true
+
+  roles:
+    - role: config-common
+    - role: config-volumes
+    - role: set-up-website
