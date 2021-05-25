@@ -7,7 +7,7 @@
 - name: Git Clone Repo
   become: yes
   git:
-    repo: https://Tankofdoom:tnGd9cqwTMTYC2x@github.com/politiCCCs/twitter_harvester.git
+    repo: https://github.com/politiCCCs/twitter_harvester.git
     dest: /home/ubuntu/twitter
     recursive: no
     track_submodules: yesssh

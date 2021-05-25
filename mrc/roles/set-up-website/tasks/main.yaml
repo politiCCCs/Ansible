@@ -13,7 +13,7 @@
 - name: Git Clone User facing Repo
   become: yes
   git:
-    repo: https://Tankofdoom:tnGd9cqwTMTYC2x@github.com/politiCCCs/user-facing.git
+    repo: https://github.com/politiCCCs/user-facing.git
     dest: /home/ubuntu/user-facing
     recursive: no
     track_submodules: yes
@@ -24,7 +24,7 @@
 - name: Git Clone Backend Repo
   become: yes
   git:
-    repo: https://Tankofdoom:tnGd9cqwTMTYC2x@github.com/politiCCCs/backend.git
+    repo: https://github.com/politiCCCs/backend.git
     dest: /home/ubuntu/user-facing/backend
     recursive: no
     track_submodules: yes
@@ -35,7 +35,7 @@
 - name: Git Clone Frontend Repo
   become: yes
   git:
-    repo: https://Tankofdoom:tnGd9cqwTMTYC2x@github.com/politiCCCs/frontend.git
+    repo: https://github.com/politiCCCs/frontend.git
     dest: /home/ubuntu/user-facing/frontend
     recursive: no
     track_submodules: yes

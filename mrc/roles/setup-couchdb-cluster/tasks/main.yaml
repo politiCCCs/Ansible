@@ -38,4 +38,4 @@
 - name: Create Tweets database
   args:
     warn: yes
-  shell: 'curl -X PUT "http://{{ couchdb_user }}:{{ couchdb_pass }}@{{ groups["main"][0] }}:{{ couchdb_port }}/tweets_db"'
+  shell: 'curl -X PUT "http://{{ couchdb_user }}:{{ couchdb_pass }}@{{ groups["main"][0] }}:{{ couchdb_port }}/twitter_db"'
